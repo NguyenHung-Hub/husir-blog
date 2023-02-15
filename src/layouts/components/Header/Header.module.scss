@@ -1,0 +1,67 @@
+@use '../../../styles' as *;
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border: 1px solid #e9e9e9;
+
+    background: #eeeeee;
+
+    padding: 16px 70px;
+    width: 100%;
+
+    .top-left {
+        display: flex;
+
+        .icon {
+            width: 24px;
+
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .top-right {
+        display: flex;
+
+        .nav {
+            display: flex;
+
+            a:not(:last-child) {
+                margin-right: 24px;
+            }
+            .nav-item {
+                font-size: 1.8rem;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
+
+                color: #555555;
+                text-transform: uppercase;
+
+                &:hover {
+                    cursor: pointer;
+                    color: #ff964f;
+                }
+            }
+        }
+        .search {
+            @include flex-center();
+
+            margin-left: 48px;
+
+            img {
+                width: 20px;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
