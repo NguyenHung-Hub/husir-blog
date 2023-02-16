@@ -5,6 +5,7 @@ $height-banner: 500px;
     // @include flex-center();
     display: flex;
 
+    margin-top: $height-header;
     // margin: 32px;
     padding: 32px 70px;
 

@@ -1,6 +1,13 @@
 @use '../../../styles' as *;
 
 .wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    height: $height-header;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,7 +16,7 @@
 
     background: #eeeeee;
 
-    padding: 16px 70px;
+    padding: 0 70px;
     width: 100%;
 
     .top-left {
