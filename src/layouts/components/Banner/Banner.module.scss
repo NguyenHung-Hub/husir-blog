@@ -2,9 +2,11 @@
 
 $height-banner: 500px;
 .wrapper {
-    @include flex-center();
+    // @include flex-center();
+    display: flex;
 
-    margin: 32px;
+    // margin: 32px;
+    padding: 32px 70px;
 
     .article-wrapper {
         position: relative;

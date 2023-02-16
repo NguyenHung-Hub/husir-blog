@@ -1,0 +1,55 @@
+.wrapper {
+    // margin: 16px;
+
+    .post-img {
+        width: 100%;
+        border-radius: 4px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .info {
+        .other-info {
+            display: flex;
+
+            margin-top: 4px;
+
+            .post-type {
+                padding: 0 6px;
+                height: 20 px;
+
+                line-height: 22px;
+
+                color: #fff;
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+
+                background-color: #ff6961;
+                border-radius: 4px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            .time {
+                margin-left: 16px;
+                font-size: 1.4rem;
+                color: #2e2e2e;
+            }
+        }
+        .title {
+            margin: 4px 0;
+            font-size: 1.8rem;
+            font-weight: 500;
+            word-wrap: break-word;
+
+            &:hover {
+                cursor: pointer;
+                color: #ff6961;
+            }
+        }
+    }
+}
