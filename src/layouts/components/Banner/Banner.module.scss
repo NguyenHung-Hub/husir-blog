@@ -1,0 +1,98 @@
+@use '../../../styles' as *;
+
+$height-banner: 500px;
+.wrapper {
+    @include flex-center();
+
+    margin: 32px;
+
+    .article-wrapper {
+        position: relative;
+
+        height: 100%;
+
+        .img-banner {
+            height: 100%;
+            border-radius: 4px;
+            border: 1px solid #e1e1e1;
+        }
+
+        .info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            margin: 24px;
+            text-shadow: 1px 1px 2px #000;
+
+            .article-type {
+                color: #ff6961;
+                font-size: 1.4rem;
+                text-transform: uppercase;
+            }
+            .title {
+                color: #eee;
+                font-size: 2.6rem;
+            }
+
+            .other-info {
+                display: flex;
+                align-items: center;
+                color: #fff;
+                .author {
+                    text-transform: uppercase;
+                    font-weight: 500;
+                }
+                .author,
+                .time {
+                    font-size: 1.6rem;
+                    color: #e1e1e1;
+                }
+                .separate {
+                    margin: 0 16px;
+                    width: 1px;
+                    height: 10px;
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+
+    .left-wrapper {
+        height: $height-banner;
+    }
+    .right-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 8px;
+
+        height: $height-banner;
+        .top-box,
+        .bottom-box {
+            height: calc($height-banner / 2 - 4px);
+
+            .article-wrapper {
+                .info {
+                    margin: 16px;
+                    .article-type {
+                        font-size: 1.2rem;
+                    }
+                    .title {
+                        font-size: 1.8rem;
+                    }
+                    .other-info {
+                        .author,
+                        .time {
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+            }
+        }
+        .top-box {
+        }
+        .bottom-box {
+        }
+    }
+}
