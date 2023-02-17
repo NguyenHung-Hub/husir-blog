@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import Header from '~/layouts/components/Header';
 import Banner from '../components/Banner';
+import SideBar from '../components/SideBar';
 
 const cx = classNames.bind(styles);
 
@@ -13,7 +14,11 @@ function DefaultLayout({ children }) {
         <div className={cx('wrapper')}>
             <Header />
             <Banner />
-            <div className={cx('content')}>{children}</div>
+
+            <div className={cx('content')}>
+                {children}
+                <SideBar />
+            </div>
         </div>
     );
 }

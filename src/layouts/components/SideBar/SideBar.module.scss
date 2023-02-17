@@ -1,0 +1,91 @@
+@use '../../../styles' as *;
+
+@mixin border-radius {
+    border-radius: 4px;
+}
+
+.wrapper {
+    margin-left: 32px;
+
+    width: 700px;
+
+    .container-sticky {
+        position: sticky;
+        top: 100px;
+        right: 0;
+        padding: 8px;
+
+        @include border-radius();
+
+        .recommend-wrapper {
+            flex-direction: column;
+            .title {
+                margin: 10px 0;
+                font-weight: 600;
+                opacity: 0.85;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .post {
+                display: flex;
+                padding: 8px;
+
+                @include border-radius();
+
+                border: 1px solid transparent;
+
+                &:hover {
+                    cursor: pointer;
+
+                    border: 1px solid $secondary;
+
+                    // color: #fff;
+                }
+                .post-img {
+                    width: 90px;
+                    height: 60px;
+                    object-fit: cover;
+
+                    @include border-radius();
+                }
+                .post-title {
+                    margin-left: 8px;
+                    font-size: 1.3rem;
+                    opacity: 0.85;
+                }
+            }
+        }
+
+        .categories-wrapper {
+            .title {
+                margin: 16px 0 8px 0;
+                font-weight: 600;
+                opacity: 0.85;
+
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .categories {
+                list-style: none;
+
+                .category {
+                    padding: 8px 0px;
+                    opacity: 0.85;
+
+                    font-weight: 500;
+                    color: #333;
+
+                    border-bottom: 1px solid #ccc;
+
+                    &:hover {
+                        cursor: pointer;
+
+                        color: $secondary;
+                        border-bottom: 1px solid $secondary;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
