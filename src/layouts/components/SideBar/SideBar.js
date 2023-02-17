@@ -17,7 +17,7 @@ function SideBar() {
                             alt="img"
                         />
                         <div className={cx('post-title')}>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, eaque?
                         </div>
                     </div>
                     <div className={cx('post')}>
@@ -27,7 +27,7 @@ function SideBar() {
                             alt="img"
                         />
                         <div className={cx('post-title')}>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, eaque?
                         </div>
                     </div>
                     <div className={cx('post')}>
@@ -37,7 +37,7 @@ function SideBar() {
                             alt="img"
                         />
                         <div className={cx('post-title')}>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, eaque?
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,44 @@
+.wrapper {
+    width: 100%;
+    .post-img {
+        width: 100%;
+        border-radius: 4px;
+    }
+    .title {
+        margin-top: 16px;
+
+        font-size: 2.4rem;
+        font-weight: 600;
+        color: #555;
+    }
+    .info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        color: #fff;
+        .author {
+            // text-transform: uppercase;
+            font-weight: 500;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .author,
+        .time {
+            font-size: 1.6rem;
+            color: #555;
+        }
+        .separate {
+            margin: 0 16px;
+            width: 1px;
+            height: 10px;
+            background-color: #555;
+        }
+    }
+    .content {
+        text-align: justify;
+        color: #333;
+        font-size: 1.8rem;
+    }
+}
