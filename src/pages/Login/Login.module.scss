@@ -1,0 +1,78 @@
+@use '../../styles/' as *;
+
+.wrapper {
+    position: absolute;
+    @include flex-center();
+    width: 100vw;
+    height: 100vh;
+    margin-top: -80px;
+    margin-left: -70px;
+    margin-right: -70px;
+
+    background: url('https://www.blendb2b.com/hubfs/BLD%20techncial%20blog.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+
+        padding: 48px;
+        width: 420px;
+        // height: 300px;
+
+        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.7));
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-right: 1px solid rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+
+        border-radius: 8px;
+
+        .title {
+            margin-bottom: 24px;
+
+            font-size: 4rem;
+            letter-spacing: 1px;
+            text-align: center;
+            color: #333;
+            text-shadow: 1px 1px 3px #8a8a8a;
+            font-weight: bold;
+        }
+        .input {
+            padding: 8px 16px;
+            margin: 8px 0px;
+
+            font-size: 1.8rem;
+            color: #555;
+
+            border-radius: 4px;
+            border: 1px solid transparent;
+            &:focus {
+                border: 1px solid $primary;
+            }
+        }
+        .username {
+        }
+        .password {
+        }
+        .login-btn {
+            margin: 16px 0px;
+            letter-spacing: 1px;
+        }
+
+        .suggest-register {
+            padding: 8px;
+            text-align: center;
+            .register-btn {
+                margin-left: 6px;
+                color: $primary;
+
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
