@@ -9,7 +9,11 @@ function Write() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('choose-img-wrapper')}>
-                <img className={cx('post-img')} src="https://www.studytienganh.vn/upload/2021/06/105889.jpg" alt="" />
+                <img
+                    className={cx('post-img')}
+                    src="https://www.studytienganh.vn/upload/2021/06/105889.jpg"
+                    alt="img"
+                />
             </div>
 
             <div className={cx('post-title-wrapper')}>
@@ -18,7 +22,7 @@ function Write() {
                     Publish
                 </Button>
             </div>
-            <textarea className={cx('post-content-input')}></textarea>
+            <textarea className={cx('post-content-input')} placeholder="Write now..."></textarea>
         </div>
     );
 }

@@ -4,7 +4,6 @@ import styles from './SinglePostLayout.module.scss';
 import PropTypes from 'prop-types';
 
 import Header from '~/layouts/components/Header';
-import Banner from '../components/Banner';
 import SideBar from '../components/SideBar';
 
 const cx = classNames.bind(styles);

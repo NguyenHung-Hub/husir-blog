@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './SinglePost.module.scss';
-import Posts from '~/layouts/components/Posts';
 
 const cx = classNames.bind(styles);
 
@@ -11,7 +10,7 @@ function SinglePost() {
             <img
                 className={cx('post-img')}
                 src="https://thumbs.dreamstime.com/b/fitness-sport-training-healthy-lifestyle-concept-group-happy-people-exercising-outdoor-fitness-sport-training-healthy-153352477.jpg"
-                alt="post image"
+                alt="post img"
             />
 
             <div className={cx('title')}>

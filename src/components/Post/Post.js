@@ -11,7 +11,7 @@ function Post() {
             <img
                 className={cx('post-img')}
                 src="https://thumbs.dreamstime.com/b/fitness-sport-training-healthy-lifestyle-concept-group-happy-people-exercising-outdoor-fitness-sport-training-healthy-153352477.jpg"
-                alt="post image"
+                alt="post img"
             />
             <div className={cx('info')}>
                 <div className={cx('other-info')}>
