@@ -56,7 +56,18 @@
 
     &:hover {
         border-color: $primary;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), $primary;
+    }
+}
+
+.success {
+    color: #fff;
+    background-color: $success;
+    border-color: $success;
+
+    &:hover {
+        border-color: $success;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), $success;
     }
 }
 

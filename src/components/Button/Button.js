@@ -9,6 +9,7 @@ function Button({
     to,
     href,
     primary = false,
+    success = false,
     outline = false,
     text = false,
     rounded = false,
@@ -44,7 +45,17 @@ function Button({
         Comp = 'a';
     }
 
-    const classes = cx('wrapper', { [className]: className, primary, outline, text, disabled, small, large, rounded });
+    const classes = cx('wrapper', {
+        [className]: className,
+        primary,
+        success,
+        outline,
+        text,
+        disabled,
+        small,
+        large,
+        rounded,
+    });
     return (
         <Comp className={classes} {...props}>
             {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
@@ -57,6 +68,7 @@ Button.propTypes = {
     to: PropTypes.string,
     href: PropTypes.string,
     primary: PropTypes.bool,
+    success: PropTypes.bool,
     outline: PropTypes.bool,
     text: PropTypes.bool,
     rounded: PropTypes.bool,

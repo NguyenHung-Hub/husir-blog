@@ -4,6 +4,7 @@ const routes = {
     register: '/register',
     post: '/post',
     write: '/write',
+    profile: '/profile',
 };
 
 export default routes;
