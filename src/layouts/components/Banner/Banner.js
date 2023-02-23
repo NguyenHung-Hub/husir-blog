@@ -1,25 +1,23 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Banner.module.scss';
+import formatDate from '~/utils/formatDate';
+import { PostContext } from '~/contexts/PostContext/PostProvider';
 
 const cx = classNames.bind(styles);
 
-const ArticleBox = () => {
+const ArticleBox = ({ data }) => {
     return (
         <div className={cx('article-wrapper')}>
-            <img
-                className={cx('img-banner')}
-                src="https://cdn.shopify.com/s/files/1/1237/8116/articles/Active-Lifestyle.jpg?v=1503420208"
-                alt="lifestyle"
-            />
+            <img className={cx('img-banner')} src={data?.photo} alt={data?.title} />
 
             <div className={cx('info')}>
-                <div className={cx('article-type')}>Lifestype</div>
-                <h3 className={cx('title')}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, repellat!</h3>
+                <div className={cx('article-type')}>{data?.categories[0]}</div>
+                <h3 className={cx('title')}>{data?.title}</h3>
                 <div className={cx('other-info')}>
-                    <p className={cx('author')}>John Doe</p>
+                    <p className={cx('author')}>{data?.username}</p>
                     <div className={cx('separate')}></div>
-                    <p className={cx('time')}>20 April 2018</p>
+                    <p className={cx('time')}>{formatDate(data?.createdAt)}</p>
                 </div>
             </div>
         </div>
@@ -27,17 +25,21 @@ const ArticleBox = () => {
 };
 
 function Banner() {
+    const { postsState, postsDispath } = useContext(PostContext);
+
+    const posts = postsState.postsBanner;
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('left-wrapper')}>
-                <ArticleBox />
+                <ArticleBox data={posts[0]} />
             </div>
             <div className={cx('right-wrapper')}>
                 <div className={cx('top-box')}>
-                    <ArticleBox />
+                    <ArticleBox data={posts[1]} />
                 </div>
                 <div className={cx('bottom-box')}>
-                    <ArticleBox />
+                    <ArticleBox data={posts[2]} />
                 </div>
             </div>
         </div>
