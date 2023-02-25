@@ -12,7 +12,7 @@ function Posts() {
 
     useEffect(() => {
         const fetchAPi = async () => {
-            const result = await postService.getPost();
+            const result = await postService.getAllPost();
             setPosts(result);
         };
 

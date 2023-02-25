@@ -1,5 +1,13 @@
+@use '../../styles/' as *;
+
 .wrapper {
+    // @include flex-center();
+    // flex-direction: column;
+
     width: 100%;
+    grid-column: 1/5;
+
+    // justify-self: end;
     .post-img {
         width: 100%;
         border-radius: 4px;

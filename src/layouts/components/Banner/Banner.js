@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Banner.module.scss';
 import formatDate from '~/utils/formatDate';
@@ -25,7 +25,7 @@ const ArticleBox = ({ data }) => {
 };
 
 function Banner() {
-    const { postsState, postsDispath } = useContext(PostContext);
+    const { postsState } = useContext(PostContext);
 
     const posts = postsState.postsBanner;
 

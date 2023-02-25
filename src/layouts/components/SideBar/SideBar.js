@@ -18,7 +18,9 @@ function SideBar() {
                     {posts.map((post, index) => {
                         return (
                             <div className={cx('post')} key={index}>
-                                <img className={cx('post-img')} src={post.photo} alt={post.title} />
+                                <div className={cx('img-wrapper')}>
+                                    <img className={cx('post-img')} src={post.photo} alt={post.title} />
+                                </div>
                                 <div className={cx('post-title')}>{post.title}</div>
                             </div>
                         );

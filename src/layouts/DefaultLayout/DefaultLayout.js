@@ -18,7 +18,7 @@ function DefaultLayout({ children }) {
 
     useEffect(() => {
         const fetchAPi = async () => {
-            const result = await postService.getPost();
+            const result = await postService.getAllPost();
             setPosts(result);
             postsDispatch(PostAction.addAllPost(result));
 

@@ -16,7 +16,7 @@ function Post({ data }) {
                     {data.categories.length > 0 && <div className={cx('post-type')}>{data.categories[0]}</div>}
                     <div className={cx('time')}>{formatDate(data.createdAt)}</div>
                 </div>
-                <Link to={'/post'}>
+                <Link to={`/post/${data.slug}`}>
                     <div className={cx('title')}>{data.title}</div>
                 </Link>
             </div>
