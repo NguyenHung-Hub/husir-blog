@@ -49,14 +49,14 @@ function Profile() {
                 <div className={cx('heading')}>Your post</div>
 
                 <div className={cx('body')}>
+                    {/* <Post />
                     <Post />
                     <Post />
                     <Post />
                     <Post />
                     <Post />
                     <Post />
-                    <Post />
-                    <Post />
+                    <Post /> */}
                 </div>
             </div>
 

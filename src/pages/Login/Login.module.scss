@@ -28,6 +28,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.8);
 
         border-radius: 8px;
+        overflow: hidden;
 
         .title {
             margin-bottom: 24px;
@@ -56,6 +57,7 @@
         }
         .password {
         }
+
         .login-btn {
             margin: 16px 0px;
             letter-spacing: 1px;
@@ -72,6 +74,28 @@
                     text-decoration: underline;
                     cursor: pointer;
                 }
+            }
+        }
+
+        &:has(.error-wrapper) {
+            padding: 0;
+        }
+
+        .error-wrapper {
+            @include flex-center();
+            flex-direction: column;
+
+            padding: 24px;
+
+            width: 100%;
+            height: 100%;
+
+            background: #fff;
+
+            .notification {
+                margin-bottom: 24px;
+                color: $primary;
+                font-size: 2rem;
             }
         }
     }

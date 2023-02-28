@@ -2,6 +2,22 @@ import httpRequest from '~/utils/httpRequest';
 
 /**
  *
+ * @param {{email:String, password:String}} user
+ * @returns
+ */
+export const login = async (user) => {
+    try {
+        const result = await httpRequest.post('/auth/login', user);
+
+        return result.data;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+};
+
+/**
+ *
  * @param {Object} user
  * @returns
  */

@@ -8,6 +8,8 @@ const svg = {
     camera: require('./camera.svg').default,
     eyeOpen: require('./eye-open.svg').default,
     eyeClose: require('./eye-closed.svg').default,
+    pen: require('./pen.svg').default,
+    user: require('./user-check.svg').default,
 };
 
 export default svg;
