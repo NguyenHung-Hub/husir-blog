@@ -19,11 +19,11 @@ const publicRoutes = [
         component: SinglePost,
         layout: SinglePostLayout,
     },
-    {
-        path: config.routes.write,
-        component: Write,
-        layout: OnlyHeader,
-    },
+    // {
+    //     path: config.routes.write,
+    //     component: Write,
+    //     layout: OnlyHeader,
+    // },
     {
         path: config.routes.login,
         component: Login,
@@ -34,11 +34,24 @@ const publicRoutes = [
         component: Register,
         layout: OnlyHeader,
     },
+    // {
+    //     path: config.routes.profile,
+    //     component: Profile,
+    //     layout: OnlyHeader,
+    // },
+];
+
+const privateRoutes = [
     {
         path: config.routes.profile,
         component: Profile,
         layout: OnlyHeader,
     },
+    {
+        path: config.routes.write,
+        component: Write,
+        layout: OnlyHeader,
+    },
 ];
 
-export { publicRoutes };
+export { publicRoutes, privateRoutes };

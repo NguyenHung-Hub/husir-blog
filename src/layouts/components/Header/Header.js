@@ -14,6 +14,7 @@ function Header() {
 
     const handleLogout = () => {
         authDispatch(AuthAction.logout());
+        window.location.replace('/login');
     };
 
     return (
