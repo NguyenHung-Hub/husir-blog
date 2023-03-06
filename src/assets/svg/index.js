@@ -10,6 +10,8 @@ const svg = {
     eyeClose: require('./eye-closed.svg').default,
     pen: require('./pen.svg').default,
     user: require('./user-check.svg').default,
+    checkCircle: require('./check-circle.svg').default,
+    plusCircle: require('./plus-circle.svg').default,
 };
 
 export default svg;

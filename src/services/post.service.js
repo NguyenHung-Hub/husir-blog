@@ -38,3 +38,12 @@ export const getRecentPost = async (numberPost) => {
         console.log(error);
     }
 };
+
+export const savePost = async (post) => {
+    try {
+        const res = await httpRequest.post('/post', post);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

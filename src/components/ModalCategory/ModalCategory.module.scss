@@ -1,0 +1,38 @@
+@use '../../styles/' as *;
+
+.modal-container {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    padding: 8px;
+    height: 100%;
+
+    .body {
+        @include flex-center();
+
+        width: 100%;
+
+        .category-input {
+            padding: 8px;
+            font-size: 2rem;
+
+            background-color: transparent;
+
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    }
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+
+        .btn {
+            &:not(:last-child) {
+                margin-right: 16px;
+            }
+        }
+    }
+}
