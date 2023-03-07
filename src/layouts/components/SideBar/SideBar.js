@@ -1,14 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './SideBar.module.scss';
-import { PostContext } from '~/contexts/PostContext/PostProvider';
+import * as postService from '~/services/post.service';
 
 const cx = classNames.bind(styles);
 
 function SideBar() {
-    const { postsState } = useContext(PostContext);
-    const posts = postsState.postsRecommand;
-    console.log(`file: SideBar.js:13 > postsRecommand:`, posts);
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            try {
+                const res = await postService.getRecommend(3);
+                setPosts(res);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchApi();
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container-sticky')}>

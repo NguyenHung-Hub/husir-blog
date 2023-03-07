@@ -47,3 +47,17 @@ export const savePost = async (post) => {
         console.log(error);
     }
 };
+
+/**
+ *
+ * @param {Number} number
+ * @returns
+ */
+export const getRecommend = async (number) => {
+    try {
+        const res = await httpRequest.get(`/post/recommend?number=${number}`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
