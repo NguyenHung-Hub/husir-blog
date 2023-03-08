@@ -84,6 +84,7 @@ function Write() {
             title,
             description: content,
             photo: 'https://bizflyportal.mediacdn.vn/bizflyportal/1228/2428/2021/03/01/17/50/he-16145742590976.jpg',
+            categories: [category],
         };
 
         if (file) {

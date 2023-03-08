@@ -5,15 +5,18 @@ import ModalBase from '../Modal/ModalBase';
 import Button from '../Button';
 import svg from '~/assets/svg';
 
+import * as userService from '~/services/user.service';
+
 const cx = classNames.bind(styles);
 
-function ModalProfile({ setShowModal }) {
+function ModalProfile({ setShowModal, user }) {
     const [file, setFile] = useState(null);
-    const [username, setUsername] = useState('John Doe');
-    const [email, setEmail] = useState('john@gmail.com');
-    const [phone, setPhone] = useState('0987654321');
-    const [password, setPassword] = useState('123456');
-    const [showPassword, setShowPassword] = useState(false);
+    const [username, setUsername] = useState(user.username);
+    const [email, setEmail] = useState(user.email);
+    const [phone, setPhone] = useState(user?.phone || '');
+    const [description, setDescription] = useState(user?.description);
+    // const [password, setPassword] = useState('123456');
+    // const [showPassword, setShowPassword] = useState(false);
 
     const handleChooseImg = (e) => {
         const file = e.target.files[0];
@@ -36,8 +39,27 @@ function ModalProfile({ setShowModal }) {
     const onChangePhone = (e) => {
         setPhone(e.target.value);
     };
-    const onChangePassword = (e) => {
-        setPassword(e.target.value);
+    // const onChangePassword = (e) => {
+    //     setPassword(e.target.value);
+    // };
+
+    const onChangeDescription = (e) => {
+        setDescription(e.target.value);
+    };
+
+    const handleUpdateUser = async () => {
+        try {
+            const updateUser = { userId: user._id, username, email, phone, description };
+            const res = await userService.updateUser(updateUser);
+            console.log(`file: ModalProfile.js:54 > res UPDATE:`, res);
+
+            if (!res?.error) {
+                window.location.reload();
+                setShowModal(false);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -45,15 +67,7 @@ function ModalProfile({ setShowModal }) {
             <div className={cx('modal-container')}>
                 <div className={cx('head')}>
                     <div className={cx('avatar-wrapper')}>
-                        <img
-                            className={cx('avatar')}
-                            src={
-                                file
-                                    ? file.preview
-                                    : 'https://i.guim.co.uk/img/media/1d4b16d4c6703e9bec9174f1cadc278026de0647/0_75_1280_768/master/1280.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d036928c5974e9e8bfd87be5dcf37dd7'
-                            }
-                            alt="avatar"
-                        />
+                        <img className={cx('avatar')} src={file ? file.preview : user?.avatar} alt="avatar" />
 
                         <label className={cx('choose-img-btn')}>
                             <img className={cx('camera-icon')} src={svg.camera} alt="camera icon" />
@@ -69,9 +83,9 @@ function ModalProfile({ setShowModal }) {
                     </div>
                     <textarea
                         className={cx('about-yourself')}
-                        defaultValue="Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse vitae modi aliquid pariatur
-                        dolorum animi, voluptatum ea nisi repellat ipsam debitis odit ducimus eligendi voluptas omnis.
-                        Inventore laboriosam consectetur numquam."
+                        defaultValue={user?.description || ''}
+                        onChange={onChangeDescription}
+                        placeholder={'Your summary'}
                     ></textarea>
                 </div>
 
@@ -86,9 +100,15 @@ function ModalProfile({ setShowModal }) {
                     </div>
                     <div className={cx('row')}>
                         <div className={cx('label')}>Phone </div>
-                        <input type="text" className={cx('input')} value={phone} onChange={onChangePhone} />
+                        <input
+                            type="text"
+                            className={cx('input')}
+                            placeholder="Phone number"
+                            value={phone}
+                            onChange={onChangePhone}
+                        />
                     </div>
-                    <div className={cx('row')}>
+                    {/* <div className={cx('row')}>
                         <div className={cx('label')}>Password </div>
 
                         <div className={cx('password-wrapper')}>
@@ -105,14 +125,14 @@ function ModalProfile({ setShowModal }) {
                                 onClick={() => setShowPassword(!showPassword)}
                             />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className={cx('footer')}>
                     <Button primary className={cx('btn')} onClick={() => setShowModal(false)}>
                         Cancel
                     </Button>
-                    <Button success className={cx('btn')}>
+                    <Button success className={cx('btn')} onClick={handleUpdateUser}>
                         Update
                     </Button>
                 </div>

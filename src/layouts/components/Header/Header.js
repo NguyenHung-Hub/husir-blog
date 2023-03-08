@@ -20,6 +20,7 @@ function Header() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('top-left')}>
+                <img className={cx('icon', 'logo')} src={svg.logo} alt="logo" />
                 <img className={cx('icon')} src={svg.facebook} alt="facebook icon" />
                 <img className={cx('icon')} src={svg.tiktok} alt="tiktok icon" />
                 <img className={cx('icon')} src={svg.twitter} alt="twitter icon" />
@@ -49,11 +50,7 @@ function Header() {
 
                 {authState.user && (
                     <div className={cx('user-login')}>
-                        <img
-                            className={cx('avatar')}
-                            src="https://sm.ign.com/ign_es/news/l/la-serie-v/la-serie-van-helsing-ya-tiene-protagonista-femenin_xbap.jpg"
-                            alt="avatar"
-                        />
+                        <img className={cx('avatar')} src={authState.user.avatar} alt="avatar" />
                         <div className={cx('menu')}>
                             <Link to={'/profile'} className={cx('menu-item')}>
                                 <img className={cx('icon')} src={svg.user} alt="profile icon" />

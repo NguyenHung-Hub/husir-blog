@@ -12,6 +12,7 @@ const svg = {
     user: require('./user-check.svg').default,
     checkCircle: require('./check-circle.svg').default,
     plusCircle: require('./plus-circle.svg').default,
+    logo: require('./logo.svg').default,
 };
 
 export default svg;

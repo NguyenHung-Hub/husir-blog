@@ -7,7 +7,6 @@ import formatDate from '~/utils/formatDate';
 const cx = classNames.bind(styles);
 
 function Post({ data }) {
-    console.log(data.photo);
     return (
         <div className={cx('wrapper')}>
             <img className={cx('post-img')} src={data.photo} alt="post img" />

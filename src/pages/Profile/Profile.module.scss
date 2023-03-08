@@ -7,7 +7,7 @@ $width-side-bar-left: 25%;
     margin-left: -70px;
     width: calc(100% + 140px);
     height: calc(100vh - $height-header * 2);
-    margin-top: $height-header * 2;
+    margin-top: calc($height-header + 24px);
 
     .profile-wrapper {
         flex-basis: $width-side-bar-left;
@@ -47,9 +47,13 @@ $width-side-bar-left: 25%;
             }
         }
 
-        .update-btn {
-            margin: 16px 0;
-            width: 100%;
+        .button-wrapper {
+            display: flex;
+            justify-content: space-between;
+
+            .btn {
+                margin: 16px 0;
+            }
         }
     }
 
@@ -66,7 +70,7 @@ $width-side-bar-left: 25%;
             position: sticky;
             top: 0;
 
-            padding-bottom: 16px;
+            padding-bottom: 8px;
 
             font-size: 2.2rem;
             font-weight: 600;

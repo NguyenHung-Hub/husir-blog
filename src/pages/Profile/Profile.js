@@ -1,66 +1,92 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import Post from '~/components/Post/Post';
 import Button from '~/components/Button';
 import ModalProfile from '~/components/ModalProfile';
+import * as postService from '~/services/post.service';
+import * as userService from '~/services/user.service';
+import { AuthContext } from '~/contexts/AuthContext/AuthProvider';
+import AuthAction from '~/contexts/AuthContext';
 
 const cx = classNames.bind(styles);
 
 function Profile() {
     const [showModal, setShowModal] = useState(false);
+    const [myPosts, setMyPosts] = useState([]);
+    const [user, setUser] = useState(null);
+
+    const { authState, authDispatch } = useContext(AuthContext);
 
     const handleToggleModal = () => {
         setShowModal(true);
     };
 
+    useEffect(() => {
+        const fetchApi = async () => {
+            try {
+                const res = await userService.getUser(authState.user._id);
+                setUser(res);
+                authDispatch(AuthAction.refreshUser(res));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchApi();
+    }, []);
+    useEffect(() => {
+        const fetchApi = async () => {
+            try {
+                const res = await postService.getByUser(authState.user._id);
+                setMyPosts(res);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchApi();
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('profile-wrapper')}>
-                <img
-                    className={cx('avatar')}
-                    src="https://i.guim.co.uk/img/media/1d4b16d4c6703e9bec9174f1cadc278026de0647/0_75_1280_768/master/1280.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d036928c5974e9e8bfd87be5dcf37dd7"
-                    alt="avatar"
-                />
-                <div className={cx('about-yourself')}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse vitae modi aliquid pariatur dolorum
-                    animi, voluptatum ea nisi repellat ipsam debitis odit ducimus eligendi voluptas omnis. Inventore
-                    laboriosam consectetur numquam.
-                </div>
+                <img className={cx('avatar')} src={user?.avatar} alt={user?.username} />
+                <div className={cx('about-yourself')}>{user?.description || 'Your summary '}</div>
                 <div className={cx('row')}>
                     <div className={cx('column')}>Username: </div>
-                    <div className={cx('column')}>John Doe</div>
+                    <div className={cx('column')}>{user?.username}</div>
                 </div>
                 <div className={cx('row')}>
                     <div className={cx('column')}>Email: </div>
-                    <div className={cx('column')}>john@gmail.com</div>
+                    <div className={cx('column')}>{user?.email}</div>
                 </div>
                 <div className={cx('row')}>
                     <div className={cx('column')}>Phone: </div>
-                    <div className={cx('column')}>0987654321</div>
+                    <div className={cx('column')}>{user?.phone || "Haven't updated"}</div>
                 </div>
 
-                <Button outline className={cx('update-btn')} onClick={handleToggleModal}>
-                    Update profile
-                </Button>
+                <div className={cx('button-wrapper')}>
+                    <Button outline className={cx('btn')}>
+                        Change password
+                    </Button>
+                    <Button outline className={cx('btn')} onClick={handleToggleModal}>
+                        Update profile
+                    </Button>
+                </div>
             </div>
 
             <div className={cx('post-wrapper')}>
                 <div className={cx('heading')}>Your post</div>
 
                 <div className={cx('body')}>
-                    {/* <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post /> */}
+                    {myPosts.map((post, index) => (
+                        <Post key={index} data={post} />
+                    ))}
                 </div>
             </div>
 
-            {showModal && <ModalProfile setShowModal={setShowModal} />}
+            {showModal && <ModalProfile setShowModal={setShowModal} user={user} />}
         </div>
     );
 }
