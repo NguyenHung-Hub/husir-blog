@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '~/contexts/AuthContext/AuthProvider';
 import Button from '~/components/Button';
 import AuthAction from '~/contexts/AuthContext';
+import AvatarDefault from '~/components/AvatarDefault';
 
 const cx = classNames.bind(styles);
 
@@ -50,7 +51,11 @@ function Header() {
 
                 {authState.user && (
                     <div className={cx('user-login')}>
-                        <img className={cx('avatar')} src={authState.user.avatar} alt="avatar" />
+                        {authState.user.avatar ? (
+                            <img className={cx('avatar')} src={authState.user.avatar} alt="avatar" />
+                        ) : (
+                            <AvatarDefault name={authState.user.username} width={40} radius="50%" />
+                        )}
                         <div className={cx('menu')}>
                             <Link to={'/profile'} className={cx('menu-item')}>
                                 <img className={cx('icon')} src={svg.user} alt="profile icon" />

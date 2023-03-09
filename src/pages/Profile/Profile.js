@@ -8,6 +8,7 @@ import * as postService from '~/services/post.service';
 import * as userService from '~/services/user.service';
 import { AuthContext } from '~/contexts/AuthContext/AuthProvider';
 import AuthAction from '~/contexts/AuthContext';
+import AvatarDefault from '~/components/AvatarDefault';
 
 const cx = classNames.bind(styles);
 
@@ -51,7 +52,11 @@ function Profile() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('profile-wrapper')}>
-                <img className={cx('avatar')} src={user?.avatar} alt={user?.username} />
+                {user?.avatar ? (
+                    <img className={cx('avatar')} src={user?.avatar} alt={user?.username} />
+                ) : (
+                    <AvatarDefault name={user?.username} width={180} />
+                )}
                 <div className={cx('about-yourself')}>{user?.description || 'Your summary '}</div>
                 <div className={cx('row')}>
                     <div className={cx('column')}>Username: </div>
