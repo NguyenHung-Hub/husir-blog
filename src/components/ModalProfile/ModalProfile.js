@@ -6,6 +6,7 @@ import Button from '../Button';
 import svg from '~/assets/svg';
 
 import * as userService from '~/services/user.service';
+import AvatarDefault from '../AvatarDefault';
 
 const cx = classNames.bind(styles);
 
@@ -67,7 +68,15 @@ function ModalProfile({ setShowModal, user }) {
             <div className={cx('modal-container')}>
                 <div className={cx('head')}>
                     <div className={cx('avatar-wrapper')}>
-                        <img className={cx('avatar')} src={file ? file.preview : user?.avatar} alt="avatar" />
+                        {(function () {
+                            if (file?.preview) {
+                                return <img className={cx('avatar')} src={file?.preview} alt="avatar" />;
+                            }
+                            if (user?.avatar) {
+                                return <img className={cx('avatar')} src={file?.preview} alt="avatar" />;
+                            }
+                            return <AvatarDefault name={user.username} width={180} />;
+                        })()}
 
                         <label className={cx('choose-img-btn')}>
                             <img className={cx('camera-icon')} src={svg.camera} alt="camera icon" />
