@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './SideBar.module.scss';
 import * as postService from '~/services/post.service';
+import { Link, useLocation } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function SideBar() {
+    const location = useLocation();
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -19,7 +21,7 @@ function SideBar() {
         };
 
         fetchApi();
-    }, []);
+    }, [location]);
 
     return (
         <div className={cx('wrapper')}>
@@ -29,12 +31,14 @@ function SideBar() {
 
                     {posts.map((post, index) => {
                         return (
-                            <div className={cx('post')} key={index}>
-                                <div className={cx('img-wrapper')}>
-                                    <img className={cx('post-img')} src={post.photo} alt={post.title} />
+                            <Link to={`/post/${post.slug}`}>
+                                <div className={cx('post')} key={index}>
+                                    <div className={cx('img-wrapper')}>
+                                        <img className={cx('post-img')} src={post.photo} alt={post.title} />
+                                    </div>
+                                    <div className={cx('post-title')}>{post.title}</div>
                                 </div>
-                                <div className={cx('post-title')}>{post.title}</div>
-                            </div>
+                            </Link>
                         );
                     })}
                 </div>
