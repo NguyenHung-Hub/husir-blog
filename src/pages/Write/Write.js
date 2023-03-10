@@ -12,32 +12,33 @@ import * as categoryService from '~/services/category.service';
 
 import { Link } from 'react-router-dom';
 import ModalCategory from '~/components/ModalCategory';
+import { PostContext } from '~/contexts/PostContext/PostProvider';
 
 const cx = classNames.bind(styles);
 
 function Write() {
+    const { postsState } = useContext(PostContext);
+    const { postEdit } = postsState;
+
     const [file, setFile] = useState(null);
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    const [title, setTitle] = useState(postEdit ? postEdit.title : '');
+    const [content, setContent] = useState(postEdit ? postEdit.description : '');
     const [categories, setCategories] = useState([]);
-    const [category, setCategory] = useState(null);
+    const [category, setCategory] = useState(postEdit ? postEdit.categories[0] : 'choose category');
 
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showAddCategory, setShowAddCategory] = useState(false);
 
+    const [updateMode, setUpdateMode] = useState(postEdit ? true : false);
+
     const [slug, setSlug] = useState('');
+    const { authState } = useContext(AuthContext);
 
     useEffect(() => {
-        if (title) {
-            document.title = title;
-        } else {
-            document.title = 'Write';
-        }
+        document.title = title || 'Write';
     }, [title]);
-
-    const { authState } = useContext(AuthContext);
 
     const handleChooseImage = (e) => {
         const file = e.target.files[0];
@@ -52,7 +53,7 @@ function Write() {
     }, [file]);
 
     const validate = () => {
-        if (!file) {
+        if (!file && !updateMode) {
             alert('Please choose image!');
             return false;
         }
@@ -83,7 +84,7 @@ function Write() {
             username: authState.user.username,
             title,
             description: content,
-            photo: 'https://bizflyportal.mediacdn.vn/bizflyportal/1228/2428/2021/03/01/17/50/he-16145742590976.jpg',
+            photo: postEdit?.photo || '',
             categories: [category],
         };
 
@@ -93,7 +94,6 @@ function Write() {
                 data.append('file', file);
 
                 const resultUpload = await uploadService.uploadImage(data);
-                console.log(`file: Write.js:57 > resultUpload:`, resultUpload);
                 newPost.photo = resultUpload.url;
             } catch (error) {
                 console.log(error);
@@ -102,8 +102,14 @@ function Write() {
         }
 
         try {
-            const result = await postService.savePost(newPost);
-            console.log(`file: Write.js:47 > PUBLISH:`, result);
+            let result;
+
+            if (updateMode) {
+                newPost._id = postEdit._id;
+                result = await postService.update(newPost);
+            } else {
+                result = await postService.savePost(newPost);
+            }
 
             setError(result?.error || null);
             setSlug(result?.slug);
@@ -141,20 +147,37 @@ function Write() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('choose-img-wrapper')}>
-                {file ? (
-                    <div className={cx('img-wrapper')}>
-                        <label htmlFor="file" className={cx('btn-select')}>
-                            <img className={cx('camera-icon')} src={svg.camera} alt="camera icon" />
-                        </label>
-                        <img className={cx('post-img')} src={file.preview} alt="img" />
-                    </div>
-                ) : (
-                    <div className={cx('not-selected')}>
-                        <label htmlFor="file" className={cx('label-select')}>
-                            Choose image
-                        </label>
-                    </div>
-                )}
+                {(function () {
+                    if (file) {
+                        return (
+                            <div className={cx('img-wrapper')}>
+                                <label htmlFor="file" className={cx('btn-select')}>
+                                    <img className={cx('camera-icon')} src={svg.camera} alt="camera icon" />
+                                </label>
+                                <img className={cx('post-img')} src={file.preview} alt="img" />
+                            </div>
+                        );
+                    }
+                    if (postsState.postEdit.photo) {
+                        return (
+                            <div className={cx('img-wrapper')}>
+                                <label htmlFor="file" className={cx('btn-select')}>
+                                    <img className={cx('camera-icon')} src={svg.camera} alt="camera icon" />
+                                </label>
+                                <img className={cx('post-img')} src={postsState.postEdit.photo} alt="img" />
+                            </div>
+                        );
+                    }
+
+                    return (
+                        <div className={cx('not-selected')}>
+                            <label htmlFor="file" className={cx('label-select')}>
+                                Choose image
+                            </label>
+                        </div>
+                    );
+                })()}
+
                 <input type="file" name="file" id="file" style={{ display: 'none' }} onChange={handleChooseImage} />
             </div>
 
@@ -176,7 +199,8 @@ function Write() {
                 <select
                     name=""
                     className={cx('categories-select')}
-                    defaultValue="choose category"
+                    // defaultValue="choose category"
+                    value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     title="choose category"
                 >
@@ -218,7 +242,7 @@ function Write() {
                                                 src={svg.checkCircle}
                                                 alt="successful"
                                             />
-                                            <p>Publishing is complete!</p>
+                                            <p>{updateMode ? 'Update' : 'Publishing'} is complete!</p>
                                             <div className={cx('control-wrapper')}>
                                                 <Link to={'/write'}>
                                                     <Button

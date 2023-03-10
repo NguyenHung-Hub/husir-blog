@@ -5,6 +5,7 @@ export const initPosts = {
     postsBanner: [],
     allPost: [],
     postsRecommand: [],
+    postEdit: null,
 };
 
 function PostReducer(state, action) {
@@ -21,6 +22,12 @@ function PostReducer(state, action) {
             return {
                 ...state,
                 postsBanner: [...state.postsBanner, ...action.payload],
+            };
+        }
+        case PostActionType.ADD_POST_EDIT: {
+            return {
+                ...state,
+                postEdit: action.payload,
             };
         }
 

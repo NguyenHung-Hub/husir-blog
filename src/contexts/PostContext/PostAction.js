@@ -13,3 +13,9 @@ export const addPostBanner = (posts) => {
         payload: posts,
     };
 };
+export const addPostEdit = (post) => {
+    return {
+        type: PostActionType.ADD_POST_EDIT,
+        payload: post,
+    };
+};

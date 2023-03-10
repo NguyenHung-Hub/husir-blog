@@ -70,3 +70,13 @@ export const getByUser = async (id) => {
         console.log(error);
     }
 };
+
+export const update = async (post) => {
+    try {
+        const res = await httpRequest.put(`/post/${post._id}`, post);
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
