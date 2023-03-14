@@ -9,21 +9,23 @@ const cx = classNames.bind(styles);
 
 const ArticleBox = ({ data }) => {
     return (
-        <div className={cx('article-wrapper')}>
-            <img className={cx('img-banner')} src={data?.photo} alt={data?.title} />
+        <Link to={`/post/${data?.slug}`}>
+            <div className={cx('article-wrapper')}>
+                <img className={cx('img-banner')} src={data?.photo} alt={data?.title} />
 
-            <div className={cx('info')}>
-                <Link to={`/${data?.categories.slug}`}>
-                    <div className={cx('article-type')}>{data?.categories.name}</div>
-                </Link>
-                <h3 className={cx('title')}>{data?.title}</h3>
-                <div className={cx('other-info')}>
-                    <p className={cx('author')}>{data?.username}</p>
-                    <div className={cx('separate')}></div>
-                    <p className={cx('time')}>{formatDate(data?.createdAt)}</p>
+                <div className={cx('info')}>
+                    <Link to={`/${data?.categories.slug}`}>
+                        <div className={cx('article-type')}>{data?.categories.name}</div>
+                    </Link>
+                    <h3 className={cx('title')}>{data?.title}</h3>
+                    <div className={cx('other-info')}>
+                        <p className={cx('author')}>{data?.username}</p>
+                        <div className={cx('separate')}></div>
+                        <p className={cx('time')}>{formatDate(data?.createdAt)}</p>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>{' '}
+        </Link>
     );
 };
 

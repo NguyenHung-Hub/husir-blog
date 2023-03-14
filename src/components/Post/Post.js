@@ -9,7 +9,9 @@ const cx = classNames.bind(styles);
 function Post({ data }) {
     return (
         <div className={cx('wrapper')}>
-            <img className={cx('post-img')} src={data.photo} alt="post img" />
+            <Link to={`/post/${data?.slug}`}>
+                <img className={cx('post-img')} src={data.photo} alt="post img" />
+            </Link>
             <div className={cx('info')}>
                 <div className={cx('other-info')}>
                     {data.categories && (
