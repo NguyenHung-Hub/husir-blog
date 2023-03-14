@@ -77,7 +77,7 @@ $height-categories: 300px;
             .scroll-wrapper {
                 overflow-y: hidden;
                 &:hover {
-                    overflow-y: auto;
+                    overflow-y: overlay;
                 }
                 height: $height-categories;
                 .categories {
@@ -87,7 +87,8 @@ $height-categories: 300px;
                         @include flex-center();
                         justify-content: space-between;
 
-                        width: 100%;
+                        padding-right: 8px;
+                        width: calc(100% - 8px);
                         border-bottom: 1px solid #ccc;
 
                         &:hover {

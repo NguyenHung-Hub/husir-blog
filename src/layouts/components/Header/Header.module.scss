@@ -37,7 +37,6 @@
         .logo {
             margin-right: 48px !important;
             width: 36px;
-            border-radius: 6px;
         }
     }
     .top-right {
@@ -60,7 +59,7 @@
 
                 &:hover {
                     cursor: pointer;
-                    color: #ff964f;
+                    color: $primary;
                 }
             }
         }

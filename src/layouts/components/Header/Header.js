@@ -21,7 +21,7 @@ function Header() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('top-left')}>
-                <img className={cx('icon', 'logo')} src={svg.logo} alt="logo" />
+                <img className={cx('icon', 'logo')} src={svg.logoH} alt="logo" />
                 <img className={cx('icon')} src={svg.facebook} alt="facebook icon" />
                 <img className={cx('icon')} src={svg.tiktok} alt="tiktok icon" />
                 <img className={cx('icon')} src={svg.twitter} alt="twitter icon" />
