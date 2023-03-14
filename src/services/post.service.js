@@ -25,6 +25,16 @@ export const getPost = async (slug) => {
     }
 };
 
+export const getPostByCategory = async (category) => {
+    try {
+        const res = await httpRequest.get(`/post?category=${category}`);
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 /**
  *
  * @param {number} numberPost

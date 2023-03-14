@@ -1,5 +1,7 @@
 @use '../../../styles' as *;
 
+$height-categories: 300px;
+
 @mixin border-radius {
     border-radius: 4px;
 }
@@ -71,24 +73,43 @@
                 text-transform: uppercase;
                 letter-spacing: 1px;
             }
-            .categories {
-                list-style: none;
 
-                .category {
-                    padding: 8px 0px;
-                    opacity: 0.85;
+            .scroll-wrapper {
+                overflow-y: hidden;
+                &:hover {
+                    overflow-y: auto;
+                }
+                height: $height-categories;
+                .categories {
+                    list-style: none;
 
-                    font-weight: 500;
-                    color: #333;
+                    .category {
+                        @include flex-center();
+                        justify-content: space-between;
 
-                    border-bottom: 1px solid #ccc;
+                        width: 100%;
+                        border-bottom: 1px solid #ccc;
 
-                    &:hover {
-                        cursor: pointer;
+                        &:hover {
+                            cursor: pointer;
+                            border-bottom: 1px solid $secondary;
+                            opacity: 1;
 
-                        color: $secondary;
-                        border-bottom: 1px solid $secondary;
-                        opacity: 1;
+                            span {
+                                color: $secondary;
+                            }
+                        }
+                        span {
+                            padding: 8px 0px;
+                            opacity: 0.85;
+
+                            font-weight: 500;
+                            color: #333;
+
+                            &:last-child {
+                                margin-right: 8px;
+                            }
+                        }
                     }
                 }
             }

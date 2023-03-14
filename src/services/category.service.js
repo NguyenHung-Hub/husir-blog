@@ -1,6 +1,15 @@
 import httpRequest from '~/utils/httpRequest';
 
-export const getCategories = async () => {
+export const getAll = async () => {
+    try {
+        const res = await httpRequest.get('/categories/all');
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const getNotEmpty = async () => {
     try {
         const res = await httpRequest.get('/categories');
 

@@ -12,7 +12,11 @@ function Post({ data }) {
             <img className={cx('post-img')} src={data.photo} alt="post img" />
             <div className={cx('info')}>
                 <div className={cx('other-info')}>
-                    {data.categories.length > 0 && <div className={cx('post-type')}>{data.categories[0]}</div>}
+                    {data.categories && (
+                        <Link to={`/${data.categories?.slug}`}>
+                            <div className={cx('post-type')}>{data.categories?.name}</div>
+                        </Link>
+                    )}
                     <div className={cx('time')}>{formatDate(data.createdAt)}</div>
                 </div>
                 <Link to={`/post/${data.slug}`}>

@@ -24,7 +24,7 @@ function Write() {
     const [title, setTitle] = useState(postEdit ? postEdit.title : '');
     const [content, setContent] = useState(postEdit ? postEdit.description : '');
     const [categories, setCategories] = useState([]);
-    const [category, setCategory] = useState(postEdit ? postEdit.categories[0] : 'choose category');
+    const [category, setCategory] = useState(postEdit ? postEdit.categories : 'choose category');
 
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -85,7 +85,7 @@ function Write() {
             title,
             description: content,
             photo: postEdit?.photo || '',
-            categories: [category],
+            categories: category,
         };
 
         if (file) {
@@ -133,7 +133,7 @@ function Write() {
 
     const getCategories = async () => {
         try {
-            const res = await categoryService.getCategories();
+            const res = await categoryService.getAll();
             setCategories(res);
         } catch (error) {
             console.log(error);
@@ -158,7 +158,7 @@ function Write() {
                             </div>
                         );
                     }
-                    if (postsState.postEdit.photo) {
+                    if (postsState.postEdit?.photo) {
                         return (
                             <div className={cx('img-wrapper')}>
                                 <label htmlFor="file" className={cx('btn-select')}>
@@ -207,7 +207,7 @@ function Write() {
                     <option value="choose category">choose category </option>
                     {categories &&
                         categories.map((category, index) => (
-                            <option key={index} value={category.name}>
+                            <option key={index} value={category._id}>
                                 {category.name}
                             </option>
                         ))}

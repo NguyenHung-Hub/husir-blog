@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './Banner.module.scss';
 import formatDate from '~/utils/formatDate';
 import { PostContext } from '~/contexts/PostContext/PostProvider';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -12,7 +13,9 @@ const ArticleBox = ({ data }) => {
             <img className={cx('img-banner')} src={data?.photo} alt={data?.title} />
 
             <div className={cx('info')}>
-                <div className={cx('article-type')}>{data?.categories[0]}</div>
+                <Link to={`/${data?.categories.slug}`}>
+                    <div className={cx('article-type')}>{data?.categories.name}</div>
+                </Link>
                 <h3 className={cx('title')}>{data?.title}</h3>
                 <div className={cx('other-info')}>
                     <p className={cx('author')}>{data?.username}</p>

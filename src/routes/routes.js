@@ -15,6 +15,11 @@ const publicRoutes = [
         component: Home,
     },
     {
+        path: config.routes.category,
+        component: Home,
+    },
+
+    {
         path: config.routes.post,
         component: SinglePost,
         layout: SinglePostLayout,
