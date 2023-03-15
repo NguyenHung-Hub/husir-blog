@@ -14,9 +14,7 @@ const ArticleBox = ({ data }) => {
                 <img className={cx('img-banner')} src={data?.photo} alt={data?.title} />
 
                 <div className={cx('info')}>
-                    <Link to={`/${data?.categories.slug}`}>
-                        <div className={cx('article-type')}>{data?.categories.name}</div>
-                    </Link>
+                    <div className={cx('article-type')}>{data?.categories.name}</div>
                     <h3 className={cx('title')}>{data?.title}</h3>
                     <div className={cx('other-info')}>
                         <p className={cx('author')}>{data?.username}</p>
@@ -24,7 +22,7 @@ const ArticleBox = ({ data }) => {
                         <p className={cx('time')}>{formatDate(data?.createdAt)}</p>
                     </div>
                 </div>
-            </div>{' '}
+            </div>
         </Link>
     );
 };

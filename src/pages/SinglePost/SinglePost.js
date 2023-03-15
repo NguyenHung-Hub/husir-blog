@@ -34,6 +34,8 @@ function SinglePost() {
     const handleOnClickEdit = () => {
         postsDispatch(PostAction.addPostEdit(post));
     };
+
+    const handleOnClickDelete = () => {};
     return (
         <div className={cx('wrapper')}>
             {post ? (

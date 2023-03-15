@@ -1,10 +1,12 @@
 import AuthActionType from './AuthConstant';
 
 export const INIT_AUTH = {
-    user: JSON.parse(localStorage.getItem('user')) || null,
+    user: localStorage.getItem('user') !== undefined ? JSON.parse(localStorage.getItem('user')) : null,
     isFetching: false,
     error: false,
 };
+
+console.log(localStorage.getItem('user'));
 /**
  *
  * @param {*} state
