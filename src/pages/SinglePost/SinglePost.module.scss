@@ -53,4 +53,20 @@
         color: #333;
         font-size: 1.8rem;
     }
+
+    .container-modal {
+        @include flex-center();
+
+        flex-direction: column;
+
+        .question {
+            margin: 24px;
+            font-size: 2rem;
+        }
+        .control-wrapper {
+            .control-btn {
+                margin: 24px;
+            }
+        }
+    }
 }

@@ -90,3 +90,18 @@ export const update = async (post) => {
         console.log(error);
     }
 };
+
+/**
+ *
+ * @param {{postId: String, username:String}} post
+ * @returns
+ */
+export const hidden = async (post) => {
+    try {
+        const res = await httpRequest.put(`/post/hidden/${post.postId}`, post);
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

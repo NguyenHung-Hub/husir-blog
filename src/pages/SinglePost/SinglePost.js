@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './SinglePost.module.scss';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as postService from '~/services/post.service';
 import formatDate from '~/utils/formatDate';
 import Loading from '~/components/Loading';
@@ -10,6 +10,7 @@ import { AuthContext } from '~/contexts/AuthContext/AuthProvider';
 import svg from '~/assets/svg';
 import { PostContext } from '~/contexts/PostContext/PostProvider';
 import PostAction from '~/contexts/PostContext';
+import ModalBase from '~/components/Modal/ModalBase';
 
 const cx = classNames.bind(styles);
 
@@ -19,12 +20,14 @@ function SinglePost() {
     console.log(`file: SinglePost.js:12 > slug:`, slug);
 
     const [post, setPost] = useState(null);
+    const [showModal, setShowModal] = useState(false);
     const { authState } = useContext(AuthContext);
     const { postsDispatch } = useContext(PostContext);
 
     useEffect(() => {
         const fetchApi = async () => {
             const result = await postService.getPost(slug);
+            console.log(`file: SinglePost.js:30 > result:`, result);
             setPost(result);
         };
 
@@ -35,7 +38,21 @@ function SinglePost() {
         postsDispatch(PostAction.addPostEdit(post));
     };
 
-    const handleOnClickDelete = () => {};
+    const handleOnClickDelete = () => {
+        setShowModal(true);
+    };
+    const handleOnClickCancel = () => {
+        setShowModal(false);
+    };
+    const handleOnClickYes = async () => {
+        try {
+            await postService.hidden({ postId: post._id, username: authState.user.username });
+            window.location.replace('/');
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div className={cx('wrapper')}>
             {post ? (
@@ -47,7 +64,9 @@ function SinglePost() {
                             <Button to={'/write'} success onClick={handleOnClickEdit}>
                                 Edit
                             </Button>
-                            <Button primary>Delete</Button>
+                            <Button primary onClick={handleOnClickDelete}>
+                                Delete
+                            </Button>
                         </div>
                     )}
 
@@ -62,6 +81,22 @@ function SinglePost() {
                 </>
             ) : (
                 <Loading />
+            )}
+
+            {showModal && (
+                <ModalBase>
+                    <div className={cx('container-modal')}>
+                        <div className={cx('question')}>Are you sure you want to delete?</div>
+                        <div className={cx('control-wrapper')}>
+                            <Button className={cx('control-btn')} rounded primary onClick={handleOnClickCancel}>
+                                Cancel
+                            </Button>
+                            <Button className={cx('control-btn')} rounded success onClick={handleOnClickYes}>
+                                Yes
+                            </Button>
+                        </div>
+                    </div>
+                </ModalBase>
             )}
         </div>
     );
