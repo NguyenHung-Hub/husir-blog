@@ -11,11 +11,10 @@ export const initPosts = {
 function PostReducer(state, action) {
     switch (action.type) {
         case PostActionType.ADD_POST: {
-            const postsRecommand = randomPosts(action.payload, 3);
+            // const postsRecommand = randomPosts(action.payload, 3);
             return {
                 ...state,
                 allPost: [...state.allPost, ...action.payload],
-                postsRecommand,
             };
         }
         case PostActionType.ADD_POST_BANNER: {
