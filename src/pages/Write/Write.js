@@ -91,7 +91,7 @@ function Write() {
         if (file) {
             try {
                 const data = new FormData();
-                data.append('file', file);
+                data.append('image', file);
 
                 const resultUpload = await uploadService.uploadImage(data);
                 newPost.photo = resultUpload.url;
