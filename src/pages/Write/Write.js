@@ -81,6 +81,7 @@ function Write() {
         setShowModal(true);
 
         const newPost = {
+            author: authState.user._id,
             username: authState.user.username,
             title,
             description: content,

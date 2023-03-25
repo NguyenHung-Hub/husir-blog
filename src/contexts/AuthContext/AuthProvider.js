@@ -5,7 +5,6 @@ export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
     const [authState, authDispatch] = useReducer(authReducer, INIT_AUTH);
-    console.log(`file: AuthProvider.js:8 > AUTH:`, authState);
 
     useEffect(() => {
         if (authState) {

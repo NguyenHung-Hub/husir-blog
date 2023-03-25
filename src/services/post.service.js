@@ -72,9 +72,9 @@ export const getRecommend = async (number) => {
     }
 };
 
-export const getByUser = async (id) => {
+export const getByUser = async (userId) => {
     try {
-        const res = await httpRequest.get(`/post?id=${id}`);
+        const res = await httpRequest.get(`/post?user=${userId}`);
         return res.data;
     } catch (error) {
         console.log(error);

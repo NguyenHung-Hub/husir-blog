@@ -6,7 +6,6 @@ export const INIT_AUTH = {
     error: false,
 };
 
-console.log(localStorage.getItem('user'));
 /**
  *
  * @param {*} state

@@ -5,7 +5,6 @@ import Post from '~/components/Post/Post';
 import Button from '~/components/Button';
 import ModalProfile from '~/components/ModalProfile';
 import * as postService from '~/services/post.service';
-import * as userService from '~/services/user.service';
 import { AuthContext } from '~/contexts/AuthContext/AuthProvider';
 import AuthAction from '~/contexts/AuthContext';
 import AvatarDefault from '~/components/AvatarDefault';
@@ -26,37 +25,33 @@ function Profile() {
     useEffect(() => {
         const fetchApi = async () => {
             try {
-                const res = await userService.getUser(authState.user._id);
-                setUser(res);
-                authDispatch(AuthAction.refreshUser(res));
+                const result = await postService.getByUser(authState.user._id);
+
+                const { posts, ...userInfo } = result;
+                setUser(userInfo);
+                setMyPosts(posts);
+
+                authDispatch(AuthAction.refreshUser(result));
             } catch (error) {
                 console.log(error);
             }
         };
 
         fetchApi();
-    }, []);
-    useEffect(() => {
-        const fetchApi = async () => {
-            try {
-                const res = await postService.getByUser(authState.user._id);
-                setMyPosts(res);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        fetchApi();
-    }, []);
+        // eslint-disable-next-line
+    }, [authState.user._id]);
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('profile-wrapper')}>
-                {user?.avatar ? (
-                    <img className={cx('avatar')} src={user?.avatar} alt={user?.username} />
-                ) : (
-                    <AvatarDefault name={user?.username} width={180} />
-                )}
+                {(function () {
+                    if (user?.avatar) {
+                        return <img className={cx('avatar')} src={user?.avatar} alt={user?.username} />;
+                    } else if (user?.username) {
+                        return <AvatarDefault name={user?.username} width={180} />;
+                    }
+                })()}
+
                 <div className={cx('about-yourself')}>{user?.description || 'Your summary '}</div>
                 <div className={cx('row')}>
                     <div className={cx('column')}>Username: </div>

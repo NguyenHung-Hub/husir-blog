@@ -50,7 +50,7 @@ function Register() {
                             return (
                                 <>
                                     <div className={cx('notification')}>Đăng ký thành công</div>
-                                    <Button outline rounded>
+                                    <Button outline rounded to={'/login'}>
                                         Next
                                     </Button>
                                 </>
