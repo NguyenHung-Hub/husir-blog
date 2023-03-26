@@ -38,12 +38,17 @@ function Header() {
                     <Link to={'/contact'}>
                         <div className={cx('nav-item')}>Contact</div>
                     </Link>
-                    <Link to={'/login'}>
-                        <div className={cx('nav-item')}>Login</div>
-                    </Link>
-                    <Link to={'/register'}>
-                        <div className={cx('nav-item')}>Register</div>
-                    </Link>
+
+                    {!authState.user && (
+                        <>
+                            <Link to={'/login'}>
+                                <div className={cx('nav-item')}>Login</div>
+                            </Link>
+                            <Link to={'/register'}>
+                                <div className={cx('nav-item')}>Register</div>
+                            </Link>
+                        </>
+                    )}
                 </div>
                 <div className={cx('search')}>
                     <img src={svg.search} alt="search icon" />

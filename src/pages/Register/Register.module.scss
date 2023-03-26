@@ -29,6 +29,10 @@
 
         border-radius: 8px;
 
+        &:has(.notification) {
+            background: #fff;
+        }
+
         .notification {
             margin-bottom: 24px;
 

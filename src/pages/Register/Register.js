@@ -49,8 +49,8 @@ function Register() {
                         if (success) {
                             return (
                                 <>
-                                    <div className={cx('notification')}>Đăng ký thành công</div>
-                                    <Button outline rounded to={'/login'}>
+                                    <div className={cx('notification')}>Successfully register</div>
+                                    <Button rounded primary to={'/login'}>
                                         Next
                                     </Button>
                                 </>
