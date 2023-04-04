@@ -29,18 +29,25 @@ $height-categories: 300px;
                 text-transform: uppercase;
                 letter-spacing: 1px;
             }
+
             .post {
                 display: flex;
-                padding: 8px;
+                padding: 10px;
 
                 @include border-radius();
 
                 border: 1px solid transparent;
+                z-index: 1;
 
                 &:hover {
                     cursor: pointer;
 
-                    border: 1px solid $secondary;
+                    color: $primary;
+                    transform: translateY(-4px);
+
+                    transition: transform 0.3s;
+                    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+                    z-index: 10;
                 }
 
                 .img-wrapper {
@@ -57,9 +64,10 @@ $height-categories: 300px;
                 .post-title {
                     flex: 1;
                     margin-left: 8px;
-                    font-size: 1.3rem;
+                    font-size: 1.4rem;
                     opacity: 0.85;
                     word-wrap: break-word;
+                    font-weight: bold;
                 }
             }
         }

@@ -16,7 +16,7 @@ function SideBar() {
     useEffect(() => {
         const fetchApi = async () => {
             try {
-                const res = await postService.getRecommend(1);
+                const res = await postService.getRecommend(3);
                 setPosts(res);
             } catch (error) {
                 console.log(error);
