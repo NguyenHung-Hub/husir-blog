@@ -5,8 +5,11 @@
     flex-direction: column;
 
     padding-top: 24px;
+    padding-bottom: 48px;
+
     width: 100%;
-    height: 100vh;
+    // height: 100vh;
+    height: auto;
 
     .choose-img-wrapper {
         @include flex-center();
@@ -90,6 +93,7 @@
 
         .post-title-input {
             width: 100%;
+
             padding: 8px;
             font-size: 2.4rem;
             font-weight: 600;
@@ -131,18 +135,25 @@
             font-size: 1.4rem;
         }
     }
-    .post-content-input {
-        min-height: 300px;
-        padding: 8px;
-        border: none;
 
-        font-size: 1.8rem;
-        color: $text-color-primary;
+    .editor-wrapper {
+        min-height: 600px;
+        max-height: 700px;
+        .post-content-input {
+            width: 100%;
+            height: 100%;
 
-        resize: none;
+            padding: 8px;
+            border: none;
 
-        outline: none;
-        border-left: 1px solid $primary;
+            font-size: 1.8rem;
+            color: $text-color-primary;
+
+            resize: none;
+
+            outline: none;
+            border-left: 1px solid $primary;
+        }
     }
 
     .modal-container {

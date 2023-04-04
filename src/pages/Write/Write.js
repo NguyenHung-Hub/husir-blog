@@ -13,6 +13,8 @@ import * as categoryService from '~/services/category.service';
 import { Link } from 'react-router-dom';
 import ModalCategory from '~/components/ModalCategory';
 import { PostContext } from '~/contexts/PostContext/PostProvider';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const cx = classNames.bind(styles);
 
@@ -35,6 +37,18 @@ function Write() {
 
     const [slug, setSlug] = useState('');
     const { authState } = useContext(AuthContext);
+
+    const modules = {
+        toolbar: [
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            [{ font: [] }],
+            [{ size: ['large', false, 'large', 'huge'] }],
+            [{ color: [] }, { background: [] }],
+            ['bold', 'italic', 'underline', 'stricke', 'blockquote', 'code-block'],
+            [{ list: 'odered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+            ['link'],
+        ],
+    };
 
     useEffect(() => {
         document.title = title || 'Write';
@@ -145,6 +159,8 @@ function Write() {
         getCategories();
     }, [showAddCategory]);
 
+    console.log(content);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('choose-img-wrapper')}>
@@ -217,12 +233,23 @@ function Write() {
                     <img src={svg.plusCircle} alt="plus icon" />
                 </Button>
             </div>
-            <textarea
+            {/* <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 className={cx('post-content-input')}
                 placeholder="Write now..."
-            ></textarea>
+            ></textarea> */}
+
+            <div className="editor-wrapper">
+                <ReactQuill
+                    className={cx('post-content-input')}
+                    theme="snow"
+                    value={content}
+                    onChange={setContent}
+                    modules={modules}
+                />
+            </div>
+
             {showModal && (
                 <ModalBase>
                     <div className={cx('modal-container')}>

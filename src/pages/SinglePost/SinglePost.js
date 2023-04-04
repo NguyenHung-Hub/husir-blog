@@ -11,6 +11,8 @@ import svg from '~/assets/svg';
 import { PostContext } from '~/contexts/PostContext/PostProvider';
 import PostAction from '~/contexts/PostContext';
 import ModalBase from '~/components/Modal/ModalBase';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
 
 const cx = classNames.bind(styles);
 
@@ -77,7 +79,7 @@ function SinglePost() {
                         <div className={cx('time')}>{post.createdAt && formatDate(post.createdAt)}</div>
                     </div>
 
-                    <div className={cx('content')}>{post.description}</div>
+                    <ReactQuill value={post.description} theme="bubble" readOnly={true} />
                 </>
             ) : (
                 <Loading />
