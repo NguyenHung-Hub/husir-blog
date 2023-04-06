@@ -7,6 +7,7 @@ import { AuthContext } from '~/contexts/AuthContext/AuthProvider';
 import Button from '~/components/Button';
 import AuthAction from '~/contexts/AuthContext';
 import AvatarDefault from '~/components/AvatarDefault';
+import Search from '../Search';
 
 const cx = classNames.bind(styles);
 
@@ -21,23 +22,26 @@ function Header() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('top-left')}>
-                <img className={cx('icon', 'logo')} src={svg.logoH} alt="logo" />
+                <Link to={'/'} style={{ height: 36 }}>
+                    <img className={cx('icon', 'logo')} src={svg.logoH} alt="logo" />
+                </Link>
                 <img className={cx('icon')} src={svg.facebook} alt="facebook icon" />
                 <img className={cx('icon')} src={svg.tiktok} alt="tiktok icon" />
                 <img className={cx('icon')} src={svg.twitter} alt="twitter icon" />
                 <img className={cx('icon')} src={svg.instagram} alt="instagram icon" />
             </div>
+            <Search />
             <div className={cx('top-right')}>
                 <div className={cx('nav')}>
                     <Link to={'/'}>
                         <div className={cx('nav-item')}>Home</div>
                     </Link>
-                    <Link to={'/about'}>
+                    {/* <Link to={'/about'}>
                         <div className={cx('nav-item')}>About</div>
                     </Link>
                     <Link to={'/contact'}>
                         <div className={cx('nav-item')}>Contact</div>
-                    </Link>
+                    </Link> */}
 
                     {!authState.user && (
                         <>
@@ -49,9 +53,6 @@ function Header() {
                             </Link>
                         </>
                     )}
-                </div>
-                <div className={cx('search')}>
-                    <img src={svg.search} alt="search icon" />
                 </div>
 
                 {authState.user && (

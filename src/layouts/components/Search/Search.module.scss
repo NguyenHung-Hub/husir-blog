@@ -1,0 +1,167 @@
+@use '../../../styles/' as *;
+
+.wrapper {
+    position: relative;
+    width: 40%;
+
+    .search {
+        position: relative;
+        $width-button: 48px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 40px;
+
+        background: #fff;
+        border: 1px solid #ddd;
+
+        border-radius: 24px;
+
+        overflow: hidden;
+
+        &::after {
+            position: absolute;
+            content: '';
+            top: 50%;
+            transform: translateY(-50%);
+            right: $width-button;
+            width: 1px;
+            height: 24px;
+
+            background: #ccc;
+        }
+        .search-input {
+            flex: 1;
+            height: 100%;
+
+            margin: 0 0px 0 16px;
+            font-size: 1.7rem;
+            color: $text-color-primary;
+            // background-color: red;
+            caret-color: $primary;
+        }
+
+        .btn {
+            @include flex-center();
+            padding: 0;
+            margin-left: 6px;
+            min-width: fit-content;
+            height: fit-content;
+
+            .clear,
+            .loading {
+                width: 16px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+        .loading {
+            animation: spinner 1s linear infinite;
+        }
+        .search-btn {
+            @include flex-center();
+            width: $width-button;
+            padding: 0;
+            min-width: fit-content;
+
+            img {
+                margin-top: 2px;
+                width: 20px;
+            }
+        }
+    }
+
+    .result-wrapper {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 6px);
+        padding-bottom: 1px;
+
+        width: 100%;
+        min-height: 60px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+        overflow: hidden;
+
+        .result-type {
+            .label {
+                padding: 8px 16px;
+                font-size: 1.7rem;
+                font-weight: bold;
+                color: $text-color-blur;
+                user-select: none;
+            }
+            .result-list {
+                list-style: none;
+                .result-item {
+                    display: flex;
+                    align-items: center;
+
+                    &:hover {
+                        cursor: pointer;
+
+                        background-color: $bg-hover;
+
+                        .result-content {
+                            color: $primary;
+                        }
+                    }
+
+                    .icon,
+                    .avatar {
+                        margin: 8px 8px 8px 24px;
+                    }
+                    .icon {
+                        width: 20px;
+                    }
+
+                    .result-content {
+                        color: $text-color-primary;
+                        padding: 8px 24px 8px 0px;
+                        text-overflow: ellipsis;
+                        font-weight: bold;
+                        font-size: 1.6rem;
+                        white-space: nowrap;
+                        overflow: hidden;
+
+                        user-select: none;
+                    }
+                }
+            }
+        }
+
+        .more-wrapper {
+            padding: 12px;
+            color: $text-color-primary;
+            font-weight: bold;
+            text-align: center;
+            &:hover {
+                cursor: pointer;
+                background-color: $bg-hover;
+                color: $primary;
+            }
+        }
+
+        &:has(.no-result) {
+            @include flex-center();
+        }
+        .no-result {
+            color: $text-color-blur;
+            font-size: 1.8rem;
+        }
+    }
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

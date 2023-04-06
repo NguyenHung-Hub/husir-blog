@@ -40,6 +40,7 @@
             width: 36px;
         }
     }
+
     .top-right {
         display: flex;
         align-items: center;
@@ -62,19 +63,6 @@
                     cursor: pointer;
                     color: $primary;
                 }
-            }
-        }
-        .search {
-            @include flex-center();
-
-            margin-left: 48px;
-
-            img {
-                width: 20px;
-            }
-
-            &:hover {
-                cursor: pointer;
             }
         }
 

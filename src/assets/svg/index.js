@@ -14,6 +14,9 @@ const svg = {
     plusCircle: require('./plus-circle.svg').default,
     logo: require('./logo.svg').default,
     logoH: require('./logo-h.png'),
+    crossCircle: require('./cross-circle.svg').default,
+    loading: require('./loading.svg').default,
+    post: require('./list-right.svg').default,
 };
 
 export default svg;

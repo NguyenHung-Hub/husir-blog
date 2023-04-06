@@ -26,6 +26,7 @@ function Profile() {
         const fetchApi = async () => {
             try {
                 const result = await postService.getByUser(authState.user._id);
+                console.log(`file: Profile.js:29 > result:`, result);
 
                 const { posts, ...userInfo } = result;
                 setUser(userInfo);

@@ -105,3 +105,18 @@ export const hidden = async (post) => {
         console.log(error);
     }
 };
+
+/**
+ *
+ * @param {String} value
+ * @returns Posts
+ */
+export const search = async (value) => {
+    try {
+        const res = await httpRequest.get(`/post/search`, { params: { value } });
+
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

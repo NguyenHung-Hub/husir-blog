@@ -240,9 +240,10 @@ function Write() {
                 placeholder="Write now..."
             ></textarea> */}
 
-            <div className="editor-wrapper">
+            <div className={cx('editor-wrapper')}>
                 <ReactQuill
                     className={cx('post-content-input')}
+                    placeholder="Write content here..."
                     theme="snow"
                     value={content}
                     onChange={setContent}

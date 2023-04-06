@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function AvatarDefault({ name, width, radius, fontSize }) {
+function AvatarDefault({ name, width, radius, src = null, fontSize, className }) {
     const [text, setText] = useState(null);
     useEffect(() => {
         if (name) {
@@ -14,8 +14,15 @@ function AvatarDefault({ name, width, radius, fontSize }) {
     }, [name]);
 
     return (
-        <div className={cx('wrapper')} style={{ width: width, height: width, borderRadius: radius }}>
-            <p style={{ fontSize: `${width > 60 ? 11.25 : 2.5}rem` }}> {text}</p>
+        <div
+            className={cx('wrapper', { [className]: className })}
+            style={{ width: width, height: width, borderRadius: radius }}
+        >
+            {src ? (
+                <img style={{ borderRadius: radius }} src={src} alt={name} />
+            ) : (
+                <p style={{ fontSize: `${width > 60 ? 11.25 : 2.5}rem` }}> {text}</p>
+            )}
         </div>
     );
 }
